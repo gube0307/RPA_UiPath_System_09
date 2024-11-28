@@ -1,0 +1,599 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Write_Edu_Info" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="i_input_FilePath" Type="InArgument(x:String)" />
+    <x:Property Name="i_list_collegeName" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="i_output_FilePath" Type="InArgument(x:String)" />
+    <x:Property Name="i_str_file_Name" Type="InArgument(x:String)" />
+    <x:Property Name="i_currentRow_info" Type="InArgument(sd:DataRow)" />
+    <x:Property Name="i_count_row" Type="InArgument(x:Int32)" />
+    <x:Property Name="i_dt_Edu" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <this:Write_Edu_Info.i_dt_Edu>
+    <InArgument x:TypeArguments="sd:DataTable" />
+  </this:Write_Edu_Info.i_dt_Edu>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>XamlGeneratedNamespace</x:String>
+      <x:String>UiPath.Activities.Presentation</x:String>
+      <x:String>UiPath.Activities.Presentation.Converters</x:String>
+      <x:String>UiPath.Shared.Activities.Design</x:String>
+      <x:String>UiPath.Shared.Activities.Design.ViewModels.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Utils</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Services</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Services.Interfaces</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Factories</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Extensions</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Editors</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Converters</x:String>
+      <x:String>UiPath.Shared.Activities.Design.AttachedProperties</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Controls</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Controls.PropertyEditors</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Controls.Models</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Business</x:String>
+      <x:String>UiPath.Shared.Activities.Design.Behaviors</x:String>
+      <x:String>UiPath.Testing.Activities.Design</x:String>
+      <x:String>UiPath.Testing.Activities.Design.Properties</x:String>
+      <x:String>UiPath.Testing.Activities.Design.Extensions</x:String>
+      <x:String>UiPath.Testing.Activities.Design.Editors</x:String>
+      <x:String>UiPath.Testing.Activities.Design.Designers</x:String>
+      <x:String>UiPath.Testing.Activities.Design.Converter</x:String>
+      <x:String>UiPath.Testing.Activities.Design.Controls</x:String>
+      <x:String>UiPath.Testing.RulesLibrary</x:String>
+      <x:String>UiPath.Testing.RulesLibrary.Services</x:String>
+      <x:String>UiPath.Testing.RulesLibrary.Interfaces</x:String>
+      <x:String>System.Threading.Tasks</x:String>
+      <x:String>UiPath.Studio.Entities.Models.Api</x:String>
+      <x:String>UiPath.Profiling.Api.Util</x:String>
+      <x:String>UiPath.Profiling.Api.Services</x:String>
+      <x:String>UiPath.Profiling.Api.Models</x:String>
+      <x:String>UiPath.Profiling.Api.Interfaces</x:String>
+      <x:String>UiPath.Shared</x:String>
+      <x:String>UiPath.Shared.Text</x:String>
+      <x:String>UiPath.Shared.Attributes</x:String>
+      <x:String>UiPath.Shared.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities.Services</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities.Bindings</x:String>
+      <x:String>UiPath.Shared.Activities.AttachedProperties</x:String>
+      <x:String>UiPath.Shared.Activities.Performance</x:String>
+      <x:String>UiPath.Shared.Testing.Orchestrator</x:String>
+      <x:String>UiPath.Shared.Testing.Orchestrator.Services</x:String>
+      <x:String>UiPath.Shared.Testing.Orchestrator.Interfaces</x:String>
+      <x:String>UiPath.Testing.Converters</x:String>
+      <x:String>UiPath.Testing.Activities</x:String>
+      <x:String>UiPath.Testing.Activities.TestData</x:String>
+      <x:String>UiPath.Testing.Activities.TestDataQueues.Enums</x:String>
+      <x:String>UiPath.Testing.Activities.Services</x:String>
+      <x:String>UiPath.Testing.Activities.Services.Interfaces</x:String>
+      <x:String>UiPath.Testing.Activities.Runtime</x:String>
+      <x:String>UiPath.Testing.Activities.PropertySettings</x:String>
+      <x:String>UiPath.Testing.Activities.Properties</x:String>
+      <x:String>UiPath.Testing.Activities.Performance</x:String>
+      <x:String>UiPath.Testing.Activities.Orchestrator.Models</x:String>
+      <x:String>UiPath.Testing.Activities.Models</x:String>
+      <x:String>UiPath.Testing.Activities.Models.OutputConfigurations</x:String>
+      <x:String>UiPath.Testing.Activities.Mocks</x:String>
+      <x:String>UiPath.Testing.Activities.Extensions</x:String>
+      <x:String>UiPath.Testing.Activities.Entitities</x:String>
+      <x:String>UiPath.Testing.Activities.Entities.Api</x:String>
+      <x:String>UiPath.Testing.Activities.Coverage</x:String>
+      <x:String>UiPath.Testing.Activities.Converters</x:String>
+      <x:String>UiPath</x:String>
+      <x:String>UiPath.Testing.API</x:String>
+      <x:String>UiPath.Testing.Activities.Api.Models</x:String>
+      <x:String>UiPath.Testing.Activities.Api.CodedWorkflowsAPI.Models</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomation.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Activities.Core.Presentation</AssemblyReference>
+      <AssemblyReference>System.Activities.Presentation</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.RulesLibrary</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>System.Threading.Tasks.Parallel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Interop</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Api</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities.Api</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Write_Edu_Info" sap:VirtualizedContainerService.HintSize="1254,4228" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="edu_File_Name" />
+      <Variable x:TypeArguments="x:String" Name="edu_Date" />
+      <Variable x:TypeArguments="x:Int32" Name="edu_score" />
+      <Variable x:TypeArguments="x:Int32" Name="edu_finalScore" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="774,88" sap2010:WorkflowViewState.IdRef="Comment_1" Text="교육사항목록에 따른 이수현황 기입" />
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="774,4117" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+      <ueab:ExcelProcessScopeX.Body>
+        <ActivityAction x:TypeArguments="ui:IExcelProcess">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="740,4007" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="706,3947" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_3" ResizeWindow="None" SensitivityOperation="None">
+              <ueab:ExcelApplicationCard.Body>
+                <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="672,3655" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="교육사항목록 데이터테이블 반복" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="638,3595" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="604,3377" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:MultipleAssign sap2010:Annotation.AnnotationText="edu_Date - 시작일자와 종료일자를 날짜형으로 Convert 후 원하는 문자열 형태로 변환&#xA;&#xA;edu_score - 문서 작성에 필요한 이수 학점 변수&#xA;&#xA;edu_finalScore - 이수 학점 총점 계산 변수" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="570,219" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                              <ui:MultipleAssign.AssignOperations>
+                                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                                    <ui:AssignOperation.To>
+                                      <OutArgument x:TypeArguments="x:String">
+                                        <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">edu_Date</CSharpReference>
+                                      </OutArgument>
+                                    </ui:AssignOperation.To>
+                                    <ui:AssignOperation.Value>
+                                      <InArgument x:TypeArguments="x:String">
+                                        <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_62">@$"{Convert.ToDateTime(CurrentRow["시작일자"]).ToString("yyyy-MM-dd")} ~ {Convert.ToDateTime(CurrentRow["종료일자"]).ToString("yyyy-MM-dd")}"</CSharpValue>
+                                      </InArgument>
+                                    </ui:AssignOperation.Value>
+                                  </ui:AssignOperation>
+                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                    <ui:AssignOperation.To>
+                                      <OutArgument x:TypeArguments="x:Int32">
+                                        <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">edu_score</CSharpReference>
+                                      </OutArgument>
+                                    </ui:AssignOperation.To>
+                                    <ui:AssignOperation.Value>
+                                      <InArgument x:TypeArguments="x:Int32">
+                                        <CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">Convert.ToInt32(CurrentRow["이수&lt;BR&gt;학점"].ToString())</CSharpValue>
+                                      </InArgument>
+                                    </ui:AssignOperation.Value>
+                                  </ui:AssignOperation>
+                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                                    <ui:AssignOperation.To>
+                                      <OutArgument x:TypeArguments="x:Int32">
+                                        <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_10">edu_finalScore</CSharpReference>
+                                      </OutArgument>
+                                    </ui:AssignOperation.To>
+                                    <ui:AssignOperation.Value>
+                                      <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                                    </ui:AssignOperation.Value>
+                                  </ui:AssignOperation>
+                                </scg:List>
+                              </ui:MultipleAssign.AssignOperations>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:MultipleAssign>
+                            <If sap2010:Annotation.AnnotationText="인사정보의 성명과 교육사항목록의 사원명이 동일할 경우에만 엑셀 작성하는 조건문" sap:VirtualizedContainerService.HintSize="570,3098" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_46">i_currentRow_info["성명"].ToString() == CurrentRow["사원명"].ToString()</CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="536,2817" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If sap2010:Annotation.AnnotationText="직위가 &quot;팀장&quot; 일 경우 &quot;리더십&quot; 부분에 엑셀 작성,&#xA;아닐 경우 &quot;전문&quot; 부분에 엑셀 작성하는 조건문" sap:VirtualizedContainerService.HintSize="502,1492" sap2010:WorkflowViewState.IdRef="If_2">
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_47">i_currentRow_info["직위"].ToString().Contains("팀장")</CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,640" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="과정명 입력" AutoIncrementRow="True" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,222" sap2010:WorkflowViewState.IdRef="WriteCellX_1">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_55">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"Q{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_56">CurrentRow["과정명 직접입력"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="교육기간 입력" AutoIncrementRow="True" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,222" sap2010:WorkflowViewState.IdRef="WriteCellX_2">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_57">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"R{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">edu_Date</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                        <Assign sap2010:Annotation.AnnotationText="이수학점이 10점 이상이 되는지 계산하는 변수" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">
+                                              <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">edu_finalScore</CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">edu_finalScore + edu_score</CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Assign>
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,640" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="과정명 입력" AutoIncrementRow="True" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,222" sap2010:WorkflowViewState.IdRef="WriteCellX_12">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_63">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"L{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_64">CurrentRow["과정명 직접입력"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="교육기간 입력" AutoIncrementRow="True" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,222" sap2010:WorkflowViewState.IdRef="WriteCellX_13">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_65">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"M{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">edu_Date</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                        <Assign sap2010:Annotation.AnnotationText="이수 학점이 10점 이상이 되는지 계산하는 변수" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">
+                                              <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">edu_finalScore</CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_67">edu_finalScore + edu_score</CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Assign>
+                                      </Sequence>
+                                    </If.Else>
+                                  </If>
+                                  <If sap2010:Annotation.AnnotationText="이수 학점이 10점 이상일 경우 기입을 멈추고 이수여부 란에 &quot;이수&quot; 기입 후&#xA;Break 사용해서 반복문 탈출,&#xA;아닐 경우 &quot;미이수&quot; 작성" sap:VirtualizedContainerService.HintSize="502,1265" sap2010:WorkflowViewState.IdRef="If_3">
+                                    <If.Condition>
+                                      <InArgument x:TypeArguments="x:Boolean">
+                                        <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_30">edu_finalScore &gt;= 10</CSharpValue>
+                                      </InArgument>
+                                    </If.Condition>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,552" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="이수학점 입력" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,222" sap2010:WorkflowViewState.IdRef="WriteCellX_4">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_58">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"S{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_31">edu_finalScore</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="&quot;이수&quot; 작성" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,222" sap2010:WorkflowViewState.IdRef="WriteCellX_8">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_59">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"T{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_33">"이수"</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                        <ui:Break sap:VirtualizedContainerService.HintSize="434,48" sap2010:WorkflowViewState.IdRef="Break_1" />
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,495" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="이수학점 입력" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,222" sap2010:WorkflowViewState.IdRef="WriteCellX_10">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_60">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"S{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_35">edu_finalScore</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                        <ueab:WriteCellX sap2010:Annotation.AnnotationText="미이수 작성" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,213" sap2010:WorkflowViewState.IdRef="WriteCellX_11">
+                                          <ueab:WriteCellX.Cell>
+                                            <InArgument x:TypeArguments="ue:IReadWriteCellRef">
+                                              <CSharpValue x:TypeArguments="ue:IReadWriteCellRef" sap2010:WorkflowViewState.IdRef="CSharpValue`1_61">Excel.Sheet[i_currentRow_info["소속부서팀"].ToString()].Cell[$"T{i_count_row}"]</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Cell>
+                                          <ueab:WriteCellX.Value>
+                                            <InArgument x:TypeArguments="x:Object">
+                                              <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">"미이수"</CSharpValue>
+                                            </InArgument>
+                                          </ueab:WriteCellX.Value>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ueab:WriteCellX>
+                                      </Sequence>
+                                    </If.Else>
+                                  </If>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                      <ui:ForEachRow.DataTable>
+                        <InArgument x:TypeArguments="sd:DataTable">
+                          <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">i_dt_Edu</CSharpValue>
+                        </InArgument>
+                      </ui:ForEachRow.DataTable>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:ForEachRow>
+                  </Sequence>
+                </ActivityAction>
+              </ueab:ExcelApplicationCard.Body>
+              <ueab:ExcelApplicationCard.WorkbookPath>
+                <InArgument x:TypeArguments="x:String">
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">Path.Combine(i_output_FilePath, i_str_file_Name)</CSharpValue>
+                </InArgument>
+              </ueab:ExcelApplicationCard.WorkbookPath>
+            </ueab:ExcelApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </ueab:ExcelProcessScopeX.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ueab:ExcelProcessScopeX>
+  </Sequence>
+</Activity>
